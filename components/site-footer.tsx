@@ -10,14 +10,15 @@ export function SiteFooter() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12 border-b-2 border-black pb-12">
           {/* Logo and Description */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <Link href="/" className="flex items-center gap-3 mb-6">
-              <div className="h-12 w-12 bg-black border-4 border-black flex items-center justify-center flex-shrink-0">
-                <Newspaper className="h-7 w-7 text-white" strokeWidth={2.5} />
+            <Link href="/" className="flex items-center gap-3 w-fit group">
+              <div className="h-10 w-10 bg-green-600 flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-105">
+                <Newspaper className="h-6 w-6 text-white" strokeWidth={2} />
               </div>
-              <div className="flex flex-col">
-                <span className="text-2xl font-bold text-black leading-none font-serif">sitesapostaspt</span>
-                <span className="text-sm text-green-600">sitesapostaspt.com</span>
-              </div>
+              <span className="text-2xl font-bold font-display">
+                <span className="text-green-600">Sites </span>
+                <span className="text-red-600">Apostas </span>
+                <span className="text-yellow-500">PT</span>
+              </span>
             </Link>
             <p className="text-gray-900 text-sm max-w-md leading-relaxed">
               O seu guia definitivo para as melhores casas de apostas licenciadas pelo SRIJ em Portugal.

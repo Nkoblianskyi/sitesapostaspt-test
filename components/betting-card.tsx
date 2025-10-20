@@ -75,55 +75,56 @@ export function BettingCard({ site, rank }: CasinoCardProps) {
 
   return (
     <div className="block animate-fade-in">
-      {/* Desktop view */}
       <div
         className={cn(
-          "hidden lg:block rounded-none shadow-sm hover:shadow-md relative overflow-hidden cursor-pointer mb-4 mx-4 transition-all duration-200 bg-white",
-          rank === 1 ? "border-4 border-[hsl(45,100%,51%)]" : "border-2 border-black",
+          "hidden lg:block rounded-lg shadow-md hover:shadow-xl relative overflow-hidden cursor-pointer mb-6 mx-4 transition-all duration-300 bg-white",
+          rank === 1 ? "ring-2 ring-[hsl(45,100%,51%)] ring-offset-2" : "border border-border",
         )}
       >
         <div
           className={cn(
-            "w-full flex items-center justify-between px-4 py-2 border-b-3 border-black/30",
-            rank === 1 ? "bg-[hsl(45,100%,51%)]" : "bg-black",
+            "w-full flex items-center justify-between px-5 py-3 border-b",
+            rank === 1
+              ? "bg-gradient-to-r from-[hsl(45,100%,51%)] to-[hsl(45,100%,45%)] border-[hsl(45,100%,40%)]"
+              : "bg-gradient-to-r from-gray-900 to-gray-800 border-gray-700",
           )}
         >
           <div className="flex items-center gap-3">
             <div
-              className={cn("text-xl font-black uppercase tracking-[0.2em]", rank === 1 ? "text-black" : "text-white")}
+              className={cn("text-xl font-black uppercase tracking-wider", rank === 1 ? "text-black" : "text-white")}
             >
               №{rank}
             </div>
             {rank <= 3 && (
               <div
                 className={cn(
-                  "px-3 py-1 text-xs font-black uppercase tracking-[0.15em] border-2 relative",
+                  "px-3 py-1 text-xs font-bold uppercase tracking-wide rounded-md shadow-sm",
                   rank === 1
-                    ? "bg-[hsl(0,84%,60%)] text-white border-black/30"
+                    ? "bg-[hsl(0,84%,60%)] text-white"
                     : rank === 2
-                      ? "bg-white text-black border-black"
-                      : "bg-[hsl(45,100%,51%)] text-black border-black",
+                      ? "bg-white text-black border border-gray-300"
+                      : "bg-[hsl(45,100%,51%)] text-black",
                 )}
               >
-                <span className="relative z-10">{getRankLabel(rank)}</span>
-                {rank === 1 && (
-                  <div className="absolute inset-0 opacity-15 bg-[repeating-linear-gradient(135deg,transparent,transparent_8px,rgba(0,0,0,0.4)_8px,rgba(0,0,0,0.4)_16px)]" />
-                )}
+                {getRankLabel(rank)}
               </div>
             )}
           </div>
-          <div className={cn("text-xs font-bold uppercase tracking-[0.1em]", rank === 1 ? "text-black" : "text-white")}>
+          <div
+            className={cn("text-xs font-semibold uppercase tracking-wide", rank === 1 ? "text-black" : "text-white/90")}
+          >
             Classificação Oficial
           </div>
         </div>
+        {/* </CHANGE> */}
 
         <Link href={site.url} target="_blank" rel="noopener noreferrer sponsored" className="block">
-          <div className="h-[150px] lg:h-[160px] flex items-center py-4 lg:py-5 px-4 lg:px-5 relative">
-            <div className="flex-[0_0_28%] min-w-0 pr-3 lg:pr-4 flex justify-center items-center h-full relative z-10">
+          <div className="h-[150px] lg:h-[160px] flex items-center py-5 lg:py-6 px-5 lg:px-6 relative">
+            <div className="flex-[0_0_28%] min-w-0 pr-4 lg:pr-5 flex justify-center items-center h-full relative z-10">
               <div
                 className={cn(
-                  "bg-black border-4 p-2 shadow-none w-full",
-                  rank === 1 ? "border-[hsl(45,100%,51%)]" : "border-black",
+                  "bg-black rounded-lg shadow-md p-3 w-full border",
+                  rank === 1 ? "border-[hsl(45,100%,51%)]" : "border-border",
                 )}
               >
                 <Image
@@ -135,9 +136,10 @@ export function BettingCard({ site, rank }: CasinoCardProps) {
                 />
               </div>
             </div>
+            {/* </CHANGE> */}
 
-            <div className="flex-[0_0_30%] min-w-0 px-3 lg:px-4 text-center flex flex-col justify-center h-full relative z-10 border-l-2 border-r-2 border-black/10">
-              <div className="text-[10px] lg:text-xs text-black uppercase font-black mb-1.5 tracking-wider">
+            <div className="flex-[0_0_30%] min-w-0 px-4 lg:px-5 text-center flex flex-col justify-center h-full relative z-10 border-l border-r border-border">
+              <div className="text-[10px] lg:text-xs text-muted-foreground uppercase font-bold mb-1.5 tracking-wide">
                 BÓNUS DE BOAS-VINDAS
               </div>
               <div className="text-base lg:text-lg font-black text-[hsl(45,100%,51%)] leading-tight line-clamp-2 px-1">
@@ -145,22 +147,24 @@ export function BettingCard({ site, rank }: CasinoCardProps) {
               </div>
             </div>
 
-            <div className="flex-[0_0_28%] min-w-0 px-3 lg:px-4 text-center flex flex-col justify-center h-full relative z-10 border-r-2 border-black/10">
-              <div className="text-[10px] lg:text-xs text-black/60 mb-1 font-semibold">
+            <div className="flex-[0_0_28%] min-w-0 px-4 lg:px-5 text-center flex flex-col justify-center h-full relative z-10 border-r border-border">
+              <div className="text-[10px] lg:text-xs text-muted-foreground mb-1 font-medium">
                 ({formatReviews(site.reviews)} AVALIAÇÕES)
               </div>
               <div className="flex justify-center gap-0.5 lg:gap-1 mb-1">{renderStars(site.stars, "sm")}</div>
               <div className="text-xl lg:text-2xl font-black leading-none text-[hsl(142,76%,36%)]">
                 {site.rating.toFixed(1)}
               </div>
-              <div className="text-[10px] lg:text-xs text-black font-bold mt-1 uppercase tracking-wider">Excelente</div>
+              <div className="text-[10px] lg:text-xs text-muted-foreground font-semibold mt-1 uppercase tracking-wide">
+                Excelente
+              </div>
             </div>
 
-            <div className="flex-[0_0_14%] min-w-0 pl-3 lg:pl-4 text-center flex flex-col justify-center items-center h-full relative z-10">
+            <div className="flex-[0_0_14%] min-w-0 pl-4 lg:pl-5 text-center flex flex-col justify-center items-center h-full relative z-10">
               <div className="w-full">
                 <Button
                   className={cn(
-                    "text-white border-0 w-full h-9 lg:h-10 mb-1.5 text-xs font-black shadow-none transition-all uppercase tracking-wider",
+                    "text-white rounded-lg w-full h-10 lg:h-11 mb-1.5 text-xs font-bold shadow-md hover:shadow-lg transition-all uppercase tracking-wide",
                     rank === 1
                       ? "bg-[hsl(45,100%,51%)] hover:bg-[hsl(45,100%,45%)] text-black"
                       : "bg-[hsl(142,76%,36%)] hover:bg-[hsl(142,76%,30%)]",
@@ -168,23 +172,23 @@ export function BettingCard({ site, rank }: CasinoCardProps) {
                 >
                   OBTER BÓNUS
                 </Button>
-                <div className="text-[9px] lg:text-[10px] text-black/60 font-bold uppercase tracking-wider">
+                <div className="text-[9px] lg:text-[10px] text-muted-foreground font-medium uppercase tracking-wide">
                   Visitar Site
                 </div>
               </div>
             </div>
+            {/* </CHANGE> */}
           </div>
         </Link>
 
-        {/* Footer Disclaimer */}
-        <div className="px-4 lg:px-6 py-2 border-t-2 border-black/10 bg-[hsl(0,0%,95%)]">
-          <p className="text-[10px] lg:text-xs text-center text-black/70 font-semibold">
+        <div className="px-5 lg:px-6 py-2.5 border-t border-border bg-secondary/50">
+          <p className="text-[10px] lg:text-xs text-center text-muted-foreground font-medium">
             +18 | Jogo Responsável |{" "}
             <a
               href="https://jogoresponsavel.pt/"
               target="_blank"
               rel="noopener noreferrer nofollow"
-              className="text-[hsl(217,91%,60%)] hover:text-[hsl(217,91%,50%)] underline font-bold"
+              className="text-accent hover:text-accent/80 underline font-semibold"
             >
               jogoresponsavel.pt
             </a>
@@ -195,39 +199,44 @@ export function BettingCard({ site, rank }: CasinoCardProps) {
       {/* Tablet view */}
       <div
         className={cn(
-          "hidden md:block lg:hidden rounded-none border-2 relative overflow-hidden cursor-pointer mb-4 mx-4 shadow-sm bg-white",
-          rank === 1 ? "border-[hsl(45,100%,51%)]" : "border-black",
+          "hidden md:block lg:hidden rounded-lg border-2 relative overflow-hidden cursor-pointer mb-6 mx-4 shadow-md bg-white",
+          rank === 1 ? "border-[hsl(45,100%,51%)]" : "border-border",
         )}
       >
         <div
           className={cn(
-            "w-full flex items-center justify-between px-4 py-2 border-b-2 border-black/30",
-            rank === 1 ? "bg-[hsl(45,100%,51%)]" : "bg-black",
+            "w-full flex items-center justify-between px-5 py-3 border-b",
+            rank === 1
+              ? "bg-gradient-to-r from-[hsl(45,100%,51%)] to-[hsl(45,100%,45%)] border-[hsl(45,100%,40%)]"
+              : "bg-gradient-to-r from-gray-900 to-gray-800 border-gray-700",
           )}
         >
           <div className="flex items-center gap-2.5">
             <div
-              className={cn("text-lg font-black uppercase tracking-[0.2em]", rank === 1 ? "text-black" : "text-white")}
+              className={cn("text-lg font-black uppercase tracking-wider", rank === 1 ? "text-black" : "text-white")}
             >
               №{rank}
             </div>
             {rank <= 3 && (
               <div
                 className={cn(
-                  "px-3 py-1 text-xs font-black uppercase tracking-[0.15em] border-2 relative",
+                  "px-3 py-1 text-xs font-bold uppercase tracking-wide rounded-md shadow-sm",
                   rank === 1
-                    ? "bg-[hsl(0,84%,60%)] text-white border-black/30"
+                    ? "bg-[hsl(0,84%,60%)] text-white"
                     : rank === 2
-                      ? "bg-white text-black border-black"
-                      : "bg-[hsl(45,100%,51%)] text-black border-black",
+                      ? "bg-white text-black border border-gray-300"
+                      : "bg-[hsl(45,100%,51%)] text-black",
                 )}
               >
-                <span className="relative z-10">{getRankLabel(rank)}</span>
+                {getRankLabel(rank)}
               </div>
             )}
           </div>
           <div
-            className={cn("text-[10px] font-bold uppercase tracking-wider", rank === 1 ? "text-black" : "text-white")}
+            className={cn(
+              "text-[10px] font-semibold uppercase tracking-wide",
+              rank === 1 ? "text-black" : "text-white/90",
+            )}
           >
             Oficial
           </div>
@@ -240,8 +249,8 @@ export function BettingCard({ site, rank }: CasinoCardProps) {
               <div className="col-span-3 flex justify-center">
                 <div
                   className={cn(
-                    "bg-black border-2 p-2 w-full relative",
-                    rank === 1 ? "border-[hsl(45,100%,51%)]" : "border-black",
+                    "bg-black rounded-lg shadow-md p-3 w-full relative",
+                    rank === 1 ? "border-[hsl(45,100%,51%)]" : "border-border",
                   )}
                 >
                   <Image
@@ -254,16 +263,16 @@ export function BettingCard({ site, rank }: CasinoCardProps) {
                 </div>
               </div>
 
-              <div className="col-span-4 text-center border-l-2 border-r-2 border-black/10 px-3">
-                <div className="text-xs text-black uppercase font-black mb-1.5">BÓNUS</div>
+              <div className="col-span-4 text-center border-l border-r border-border px-3">
+                <div className="text-xs text-muted-foreground uppercase font-bold mb-1.5">BÓNUS</div>
                 <div className="text-base font-black text-[hsl(45,100%,51%)] leading-tight break-words">
                   {site.bonus}
                 </div>
               </div>
 
               {/* Rating & Score */}
-              <div className="col-span-3 text-center border-r-2 border-black/10 px-2">
-                <div className="text-xs text-black/60 mb-1 font-semibold">({formatReviews(site.reviews)})</div>
+              <div className="col-span-3 text-center border-r border-border px-2">
+                <div className="text-xs text-muted-foreground mb-1 font-medium">({formatReviews(site.reviews)})</div>
                 <div className="flex justify-center gap-0.5 mb-1">{renderStars(site.stars, "md")}</div>
                 <div className="text-xl font-black leading-none text-[hsl(142,76%,36%)]">{site.rating.toFixed(1)}</div>
               </div>
@@ -271,7 +280,7 @@ export function BettingCard({ site, rank }: CasinoCardProps) {
               <div className="col-span-2 text-center">
                 <Button
                   className={cn(
-                    "text-white border-0 px-2 py-2.5 text-xs w-full font-black shadow-none uppercase",
+                    "text-white rounded-lg px-2 py-2.5 text-xs w-full font-black shadow-md hover:shadow-lg uppercase",
                     rank === 1
                       ? "bg-[hsl(45,100%,51%)] hover:bg-[hsl(45,100%,45%)] text-black"
                       : "bg-[hsl(142,76%,36%)] hover:bg-[hsl(142,76%,30%)]",
@@ -286,23 +295,25 @@ export function BettingCard({ site, rank }: CasinoCardProps) {
       </div>
 
       {/* Mobile view */}
-      <div className="md:hidden relative mb-3">
+      <div className="md:hidden relative mb-6">
         <div
           className={cn(
-            "block rounded-none overflow-hidden cursor-pointer border-2 bg-white",
-            rank === 1 ? "border-[hsl(45,100%,51%)]" : "border-black",
+            "block rounded-lg overflow-hidden cursor-pointer border-2 bg-white",
+            rank === 1 ? "ring-2 ring-[hsl(45,100%,51%)] ring-offset-2" : "border border-border",
           )}
         >
           <div
             className={cn(
-              "w-full flex items-center justify-between px-3 py-1.5 border-b-2 border-black/30",
-              rank === 1 ? "bg-[hsl(45,100%,51%)]" : "bg-black",
+              "w-full flex items-center justify-between px-5 py-3 border-b",
+              rank === 1
+                ? "bg-gradient-to-r from-[hsl(45,100%,51%)] to-[hsl(45,100%,45%)] border-[hsl(45,100%,40%)]"
+                : "bg-gradient-to-r from-gray-900 to-gray-800 border-gray-700",
             )}
           >
             <div className="flex items-center gap-2">
               <div
                 className={cn(
-                  "text-base font-black uppercase tracking-[0.2em]",
+                  "text-base font-black uppercase tracking-wider",
                   rank === 1 ? "text-black" : "text-white",
                 )}
               >
@@ -311,23 +322,23 @@ export function BettingCard({ site, rank }: CasinoCardProps) {
               {rank <= 3 && (
                 <div
                   className={cn(
-                    "px-2 py-0.5 text-[10px] font-black uppercase tracking-[0.1em] border relative",
+                    "px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide rounded-md shadow-sm",
                     rank === 1
-                      ? "bg-[hsl(0,84%,60%)] text-white border-black/30"
+                      ? "bg-[hsl(0,84%,60%)] text-white"
                       : rank === 2
-                        ? "bg-white text-black border-black"
-                        : "bg-[hsl(45,100%,51%)] text-black border-black",
+                        ? "bg-white text-black border border-gray-300"
+                        : "bg-[hsl(45,100%,51%)] text-black",
                   )}
                 >
-                  <span className="relative z-10">{getRankLabel(rank)}</span>
-                  {rank === 1 && (
-                    <div className="absolute inset-0 opacity-15 bg-[repeating-linear-gradient(135deg,transparent,transparent_5px,rgba(0,0,0,0.4)_5px,rgba(0,0,0,0.4)_10px)]" />
-                  )}
+                  {getRankLabel(rank)}
                 </div>
               )}
             </div>
             <div
-              className={cn("text-[9px] font-bold uppercase tracking-wider", rank === 1 ? "text-black" : "text-white")}
+              className={cn(
+                "text-[9px] font-semibold uppercase tracking-wide",
+                rank === 1 ? "text-black" : "text-white/90",
+              )}
             >
               Oficial
             </div>
@@ -340,8 +351,8 @@ export function BettingCard({ site, rank }: CasinoCardProps) {
                 <div className="flex justify-center items-center p-3 mt-6">
                   <div
                     className={cn(
-                      "bg-black p-2 w-32 h-20 flex items-center justify-center border-2",
-                      rank === 1 ? "border-[hsl(45,100%,51%)]" : "border-black",
+                      "bg-black rounded-lg shadow-md p-3 w-32 h-20 flex items-center justify-center border",
+                      rank === 1 ? "border-[hsl(45,100%,51%)]" : "border-border",
                     )}
                   >
                     <Image
@@ -362,10 +373,10 @@ export function BettingCard({ site, rank }: CasinoCardProps) {
               </div>
 
               {/* Rating Row */}
-              <div className="grid grid-cols-4 items-center gap-2 px-3 py-2 border-t-2 border-black/10 min-h-[50px]">
+              <div className="grid grid-cols-4 items-center gap-2 px-5 py-2 border-t border-border min-h-[50px]">
                 <div className="col-span-2 text-center">
                   <div className="flex justify-center gap-0.5 mb-1">{renderStars(site.stars, "lg")}</div>
-                  <div className="text-black/60 font-semibold text-[10px]">
+                  <div className="text-muted-foreground font-medium text-[10px]">
                     {site.reviews ? `(${site.reviews} Avaliações)` : "(2500 Avaliações)"}
                   </div>
                 </div>
@@ -374,14 +385,13 @@ export function BettingCard({ site, rank }: CasinoCardProps) {
                 <div className="flex justify-center">
                   <Button
                     className={cn(
-                      "text-white mb-2 text-[14px] px-4 py-2 font-black border-0 shadow-none uppercase whitespace-nowrap",
+                      "text-white mb-2 text-[14px] px-4 py-2 font-black border-0 shadow-md hover:shadow-lg rounded-lg uppercase whitespace-nowrap",
                       rank === 1
                         ? "bg-[hsl(45,100%,51%)] hover:bg-[hsl(45,100%,45%)] text-black"
                         : "bg-[hsl(142,76%,36%)] hover:bg-[hsl(142,76%,30%)]",
                     )}
-                    asChild
                   >
-                    <span className="text-xl">OBTER</span>
+                    OBTER
                   </Button>
                 </div>
               </div>
